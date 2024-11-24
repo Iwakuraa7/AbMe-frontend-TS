@@ -1,0 +1,69 @@
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.nav-bar-box {
+    background: radial-gradient(circle at 0% 0%, var(--gloomYellow), var(--sageGreen), var(--lightPink), var(--lightBlue), var(--red), var(--yellow));
+    animation: gradient-animation 50s ease-out infinite;
+    background-size: 200% 200%;
+    width: 100vw;
+    min-height: 8vh;
+    display: flex;
+    flex-direction: row;
+    color: black;
+    cursor: cell;
+}
+
+.nav-bar-element {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.nav-bar-element:hover {
+    outline: 1px solid snow;
+    color: snow;
+    animation: gradient-animation 5s ease-in-out infinite;
+}
+
+.add-bar-element {
+    position: relative;
+}
+
+
+.dropdown-container {
+    position: absolute;
+    top: 100%; /* Positions it below the "Add" element */
+    left: 0;
+    width: 100%;
+    background-color: black;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: block; /* Initially hidden */
+    z-index: 1;
+}
+  
+  /* Dropdown items */
+.dropdown-container div {
+    background-color: black;
+    border-bottom: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    cursor: crosshair;
+}
+  
+.dropdown-container div:hover {
+    border-bottom: 1px solid snow;
+    color: white;
+}

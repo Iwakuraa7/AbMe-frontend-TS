@@ -1,0 +1,127 @@
+/* Remove scrollbar */
+*::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.main-grid {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-grid-component,
+.middle-grid-component > div,
+.right-grid-component > div {
+    position: relative;
+    /* overflow: hidden; */
+}
+
+/* Pseudo-element for smooth transitions */
+.left-grid-component::before,
+.middle-grid-component > div::before,
+.right-grid-component > div::before {
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    outline: 1px solid snow;
+    background-size: cover;
+    transition: opacity 1.5s ease-in-out;
+    z-index: 1;
+    opacity: 0; /* Initially hidden */
+}
+
+/* Default settings of three parts */
+.left-grid-component {
+    background-image: radial-gradient(circle, var(--tomato), var(--yellow));
+    width: 33.333%;
+}
+
+.middle-grid-component {
+    width: 33.333%;
+}
+
+.right-grid-component {
+    width: 33.333%;
+}
+
+/* Default gradients */
+.up-middle-grid-component {
+    background-image: radial-gradient(circle at 20% 20%, var(--green), var(--plum));
+    height: 50%;
+}
+
+.down-middle-grid-component {
+    background-image: radial-gradient(circle at 60% 70%, var(--lightBlue), var(--gloomYellow));
+    height: 50%;
+}
+
+.up-right-grid-component {
+    background-image: radial-gradient(circle, var(--lightPink), var(--lightBlue));
+    height: 33.333vh;
+}
+
+.middle-right-grid-component {
+    background-image: linear-gradient(140deg, var(--lightPink), var(--gloomYellow));
+    height: 33.333vh;
+}
+
+.down-right-grid-component {
+    background-image: radial-gradient(circle at 100% 30%, var(--red), var(--sageGreen));
+    height: 33.333vh;
+}
+
+/* Hover states: New gradient on pseudo-elements */
+.left-grid-component::before {
+    content: "AbMe";
+    font-size: 6em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: radial-gradient(circle, var(--yellow), var(--tomato));
+}
+
+.up-middle-grid-component::before {
+    content: "Create your own aura.";
+    font-size: 5em;
+    background-image: radial-gradient(circle at 80% 80%, var(--plum), var(--green));
+}
+
+.down-middle-grid-component::before {
+    content: "Spread, embrace, and share it.";
+    font-size: 5em;
+    background-image: radial-gradient(circle at 30% 40%, var(--gloomYellow), var(--lightBlue));
+}
+
+.up-right-grid-component::before {
+    content: "About";
+    font-size: 5em;
+    background-image: radial-gradient(circle, var(--lightBlue), var(--lightPink));
+}
+
+.middle-right-grid-component::before {
+    content: "Sign in";
+    font-size: 5em;
+    background-image: linear-gradient(140deg, var(--gloomYellow), var(--lightPink));
+}
+
+.down-right-grid-component::before {
+    content: "Sign up";
+    font-size: 5em;
+    background-image: radial-gradient(circle at 50% 50%, var(--sageGreen), var(--red));
+}
+
+/* On hover: Fade in the new gradient */
+.left-grid-component:hover::before,
+.up-middle-grid-component:hover::before,
+.down-middle-grid-component:hover::before,
+.up-right-grid-component:hover::before,
+.middle-right-grid-component:hover::before,
+.down-right-grid-component:hover::before {
+    opacity: 1; /* Fade in the new gradient */
+}

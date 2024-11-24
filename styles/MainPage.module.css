@@ -1,0 +1,99 @@
+body {
+    color: snow;
+}
+
+@keyframes morph {
+    0%, 100% {
+        border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%;
+    }
+    25% {
+        border-radius: 60% 40% 60% 40% / 30% 60% 40% 70%;
+    }
+    50% {
+        border-radius: 50% 60% 40% 50% / 50% 50% 60% 40%;
+    }
+    75% {
+        border-radius: 40% 60% 50% 50% / 70% 30% 60% 40%;
+    }
+}
+
+.morphing-shape {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at 50% 50%, var(--tomato), var(--yellow));
+    box-shadow: 0 0 0px var(--yellow), 0 0 40px var(--tomato), 0 0 100px var(--yellow);
+    font-size: 3em;
+    color: white;
+    font-weight: bold;
+    animation: morph 10s infinite alternate;
+    transition: box-shadow 1s ease-in-out;
+}
+
+
+.mainPage-back {
+    background-color: var(--black);
+    min-height: 92vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5vh;
+}
+
+.search-user-input-box {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: 500;
+    color: snow;
+}
+
+.search-user-input-box input {
+    width: 15vw;
+    height: 3.5vh;
+    font-size: 0.8em;
+    font-weight: 500;
+    text-align: center;
+}
+
+.button-style {
+    color: snow;
+    outline: 1px solid snow;
+    border: none;
+    background-color: black;
+    font-weight: 500;
+}
+
+.button-style:hover {
+    outline: 1px solid snow;
+}
+
+.usernames-box {
+    /* outline: 1px hotpink solid; */
+    max-width: 40vw;
+    min-height: 7vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-self: center;
+    justify-content: center;
+}
+
+.usernameEntity-box {
+    display: block;
+    min-width: 10vw;
+    text-align: center;
+}
+
+.usernameEntity-box:hover {
+    outline: 1px solid snow;
+    cursor: pointer;
+}

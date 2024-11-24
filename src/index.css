@@ -1,0 +1,31 @@
+* {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+:root {
+  --tomato: #ff6347;
+  --yellow: #ffd700;
+  --green: #67de28;
+  --plum: #8776de;
+  --purple: #c368ff;
+  --lightPink: #eeaeca;
+  --lightBlue: #94bbe9;
+  --gloomYellow: #e9ce94;
+  --sageGreen: #91f1b9;
+  --red: #e65f5e;
+  --black: #000000;
+  --grey: #676363;
+  --blue: #468bdb;
+  --hotpink: hotpink;
+}
+
+input {
+  border: none;
+  outline: none;
+  width: 20vw;
+  height: 3vh;
+}

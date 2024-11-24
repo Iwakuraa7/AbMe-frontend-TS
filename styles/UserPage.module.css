@@ -1,0 +1,192 @@
+body {
+    background-color: black;   
+}
+
+.user-hobby-main-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 4vw;
+    row-gap: 4vh;
+    justify-content: center;
+}
+
+.userHobbyBox {
+    outline: 1px solid snow;
+    border-radius: 0px;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+  
+.userHobbyBox img {
+    width: 150px;
+    height: 140px;
+}
+  
+.bookImagesRes img {
+    width: 100px;
+    height: 140px;
+}
+  
+.userHobbyBox:hover > .userHobbyBoxTitle {
+    background-color: snow;
+    color: black;
+}
+  
+.userHobbyBoxImages {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 300px;
+    height: 280px;
+    /* border: 1px solid hotpink; */
+}
+  
+.userHobbyBoxTitle {
+    background-color: black;
+    width: 300px;
+    height: 20px;
+    text-align: center;
+    color: snow;
+}
+  
+.hobbyRollBox {
+    /* border: 1px blue dotted; */
+    display: flex;
+    flex-direction: row;
+    background-color: #e9e9e9aa;
+    width: 100vw;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Prevent vertical scrolling */
+    padding: 20px; /* Optional padding for aesthetics */
+    box-sizing: border-box;
+}
+  
+.hobbyRollBox::-webkit-scrollbar {
+    display: none;
+}
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+.hobbyRollBox {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.center-text {
+    text-align: center;
+}
+
+.hobby-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.random-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.expanded-hobby-entity-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    position: relative;
+}
+
+.center-upper-elements {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-upper-elements button {
+    font-weight: 500;
+    width: 5vw;
+    height: 3vh;
+}
+
+.button-style {
+    position: absolute;
+    top: 1vw;
+    color: snow;
+    outline: 1px solid snow;
+    border: none;
+    background-color: black;
+    font-weight: 500;
+}
+
+.user-page-main-box {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    row-gap: 6vh;
+}
+
+.settings-image {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    bottom: 10px;
+}
+
+.settings-image:hover {
+    cursor: pointer;
+}
+
+.color-settings-box {
+    outline: 1px solid snow;
+    font-size: 0.4em;
+    width: 8vw;
+    height: 15vh;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    bottom: 10px;
+    right: -9vw;
+}
+
+.color-settings-box button {
+    color: snow;
+    outline: 1px solid snow;
+    border: none;
+    background-color: black;
+    font-weight: 500;
+}
+
+.color-picker {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.color-picker::-webkit-color-swatch {
+    outline: 1px solid snow;
+    border: none;
+}
+
+.color-input-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    column-gap: 1vw;
+}

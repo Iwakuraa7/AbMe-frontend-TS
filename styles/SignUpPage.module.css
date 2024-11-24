@@ -1,0 +1,82 @@
+/* body {
+    background-image: radial-gradient(circle at 50% 65%, var(--plum), var(--lightPink));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+} */
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.column-three {
+    border-left: 1px solid snow;
+    height: 100vh;
+    width: 33.333%;
+    display: flex;
+    flex-direction: column;
+}
+
+.column-three input {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    width: 15vw;
+    height: 3.5vh;
+    font-size: 0.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.up-component {
+    background-image: radial-gradient(circle at 30% 45%, var(--sageGreen), var(--lightBlue));
+    animation: gradient-animation 10s ease-in-out infinite;
+}
+
+.middle-component {
+    background-image: radial-gradient(circle at 95% 85%, var(--lightPink), var(--grey));
+    animation: gradient-animation 7s ease-in-out infinite;
+}
+
+.down-component {
+    background-image: radial-gradient(circle at 15% 35%, var(--plum), var(--tomato));
+    animation: gradient-animation 5s ease-in-out infinite;
+}
+
+.last-component {
+    background-image: radial-gradient(circle at 95% 85%, var(--lightPink), var(--lightBlue));
+    animation: gradient-animation 3s ease-in-out infinite;
+    background-size: 400% 400%;
+    height: 10%;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.last-component:hover {
+    cursor: cell;
+    animation: gradient-animation 1s ease-in-out infinite;
+}
+
+.up-component,
+.middle-component,
+.down-component {
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    background-size: 400% 400%; /* Creates a smoother transition */
+}

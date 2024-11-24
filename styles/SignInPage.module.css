@@ -1,0 +1,88 @@
+/* body {
+    background-image: radial-gradient(circle at 50% 65%, var(--plum), var(--lightPink));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+} */
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes gradient-reverse-animation {
+    0% {
+        background-position: 50% 0%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 50% 0%;
+    }
+}
+
+.column-fifty-fifty {
+    border-left: 1px solid snow;
+    height: 100vh;
+    width: 33.333%;
+    display: flex;
+    flex-direction: column;
+}
+
+.column-fifty-fifty input {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    width: 15vw;
+    height: 3.5vh;
+    font-size: 0.4em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.up-component {
+    background-image: radial-gradient(circle at 40% 45%, var(--red), var(--gloomYellow), var(--sageGreen), var(--grey));
+    animation: gradient-reverse-animation 10s ease-in-out infinite;
+}
+
+.middle-component {
+    background-image: radial-gradient(circle at 55% 85%, var(--green), var(--lightPink));
+    animation: gradient-animation 7s ease-in-out infinite;
+}
+
+.down-component {
+    background-image: radial-gradient(circle at 95% 85%, var(--lightPink), var(--lightBlue));
+    animation: gradient-animation 5s ease-in-out infinite;
+    background-size: 400% 400%;
+    height: 10%;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.down-component:hover {
+    cursor: cell;
+    animation: gradient-animation 1s ease-in-out infinite;
+}
+
+.up-component,
+.middle-component {
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    font-weight: bold;
+    background-size: 400% 400%; /* Creates a smoother transition */
+}

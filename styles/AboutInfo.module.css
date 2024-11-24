@@ -1,0 +1,30 @@
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.aboutInfo {
+    background: radial-gradient(circle at 50% 50%, var(--red), var(--purple), var(--grey));
+    background-size: 400% 400%;
+    border-left: 1px solid snow;
+    animation: gradient-animation 4s ease-in-out infinite;
+    width: 33.333%;
+    height: 100vh;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .aboutInfo p {
+    margin: 0;
+    padding: 10px;
+  }

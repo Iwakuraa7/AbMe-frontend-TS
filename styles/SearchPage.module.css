@@ -1,0 +1,121 @@
+body button:hover {
+    background-color: white;
+    color: black;
+    cursor: cell;
+}
+
+.search-main-box {
+    position: relative;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5vh;
+    min-height: 100vh;
+    height: 100%;
+    color: snow;
+}
+
+.search-main-box button {
+    color: snow;
+    outline: 1px solid snow;
+    border: none;
+    background-color: black;
+}
+
+.search-input-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.search-input-box input {
+    color: snow;
+    outline: 1px solid snow;
+    border: none;
+    background-color: black;
+    width: 20vw;
+    height: 3vh;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.search-input-box h1 {
+    color: snow;
+}
+
+.search-and-button-rel {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2%;
+}
+
+.searchBox {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+  
+.searchResultEntity {
+    width: 270px;
+    height: 100%;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.searchResultEntity button {
+    position: absolute;
+    bottom: 20px;
+    opacity: 0;
+}
+
+.searchResultEntity:hover button {
+    opacity: 1;
+}
+
+.searchResultEntity:hover {
+    outline: 1px solid snow;
+}
+
+.searchBox button {
+    width: 65px;
+    height: 25px;
+    font-weight: 500;
+}
+
+.center-text-box {
+    text-align: center;
+}
+
+.context-msg-box {
+    position: absolute;
+    position: fixed;
+    right: 1px;
+    bottom: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    height: 6vh;
+    text-align: center;
+    background-color: black;
+    color: snow;
+    outline: 1px solid snow;
+    font-size: 1em;
+    font-weight: 500;
+    z-index: 1;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+}
