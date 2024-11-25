@@ -1,18 +1,12 @@
 import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
-import {jwtDecode } from "jwt-decode";
 import styles from "../styles/UserPage.module.css"
 import mainPageStyles from "../styles/MainPage.module.css"
 import NavBar from "../components/NavBar";
 import { UserContext } from "../src/contexts/UserContext";
 import ContextMessage from "../components/ContextMessage";
-import userInfoType from "../src/contexts/UserContext";
-
-type hobbyDataType = {
-    id: number;
-    title: string;
-    imageUrl: string;
-}
+import useFetchUserData from "../src/hooks/useFetchUserData";
+import HobbyBox from "../components/HobbyBox";
 
 type randomDimension = {
     width: number;
@@ -21,65 +15,14 @@ type randomDimension = {
 
 export default function UserPage() {
     const {contextMsg, fadeOut, showMessage} = useContext(UserContext);
-    const [isOwner, setIsOwner] = useState<boolean>(false);
+    const { musicData, setMusicData, booksData, setBooksData, animeData,
+            setAnimeData, mangaData, setMangaData, mediaData, setMediaData,
+            userColorOne, setUserColorOne, userColorTwo, setUserColorTwo, isOwner } = useFetchUserData();
     const [isColorSettings, setIsColorSettings] = useState<boolean>(false);
-    const [userColorOne, setUserColorOne] = useState<string>('#ff6347');
-    const [userColorTwo, setUserColorTwo] = useState<string>('#ffd700');
-    const [musicData, setMusicData] = useState<hobbyDataType[]>([]);
-    const [booksData, setBooksData] = useState<hobbyDataType[]>([]);
-    const [animeData, setAnimeData] = useState<hobbyDataType[]>([]);
-    const [mangaData, setMangaData] = useState<hobbyDataType[]>([]);
-    const [mediaData, setMediaData] = useState<hobbyDataType[]>([]);
     const [randomDimensions, setRandomDimensions] = useState<randomDimension[]>([]);
     const [expandedHobby, setExpandedHobby] = useState<string | null>(null);
     const [dataToDelete, setDataToDelete] = useState<number | null>(null);
     const params = useParams();
-
-    useEffect(() => {
-        async function fetchHobbyData() {
-                var response = await fetch(`http://localhost:5078/api/account/user-hobby-data/${params.username}`, {
-                    method: "GET",
-                    headers: {
-                        "Authorization": "Bearer " + localStorage.getItem('token'),
-                        "Content-Type": "application/json",
-                    }
-                })
-
-                var data = await response.json();
-
-                if(data.succeeded) {
-                    setMusicData(data.musicData);
-                    setBooksData(data.booksData);
-                    setAnimeData(data.animeData);
-                    setMangaData(data.mangaData);
-                    setMediaData(data.mediaData);
-                    setUserColorOne(data.userColors.firstColor);
-                    setUserColorTwo(data.userColors.secondColor);
-                    console.log(data);
-                }
-
-                else
-                    console.error(data.message);
-        }
-
-        function checkOwnership() {
-            var token = localStorage.getItem('token');
-
-            if(token === null)
-                return;
-
-            var userInfo: userInfoType = jwtDecode(token);
-
-            if(userInfo.given_name === params.username)
-                setIsOwner(true);
-
-            else
-                setIsOwner(false);
-        }
-
-        fetchHobbyData();
-        checkOwnership();
-    }, [params.username])
 
     async function deleteRelevantData(dataId: number) {
         try
@@ -102,13 +45,13 @@ export default function UserPage() {
                 {
                     case 'music':
                         setMusicData((prevData) => prevData.filter(m => m.id !== dataId));
-                    case 'book':
+                    case 'literature':
                         setBooksData((prevData) => prevData.filter(b => b.id !== dataId));
                     case 'anime':
                         setAnimeData((prevData) => prevData.filter(a => a.id !== dataId));
                     case 'manga':
                         setMangaData((prevData) => prevData.filter(m => m.id !== dataId));
-                    case 'movie':
+                    case 'media':
                         setMediaData((prevData) => prevData.filter(m => m.id != dataId));
                     default:
                         return;
@@ -139,24 +82,6 @@ export default function UserPage() {
         showMessage(data.message);
     }
 
-    function findRelevantData() {
-        switch(expandedHobby)
-        {
-            case 'music':
-                return musicData;
-            case 'book':
-                return booksData;
-            case 'anime':
-                return animeData;
-            case 'manga':
-                return mangaData;
-            case 'movie':
-                return mediaData;
-            default:
-                return null;
-        }        
-    }
-
     useEffect(() => {
         function createRandomDimensions() {
             const dimensions: randomDimension[] = [];
@@ -167,7 +92,7 @@ export default function UserPage() {
                 return;
 
             relevantData.forEach(data => {
-                const randomWidth = expandedHobby === 'book' ? Math.floor(Math.random() * 100 + 100) : Math.floor(Math.random() * 100 + 200);
+                const randomWidth = expandedHobby === 'literature' ? Math.floor(Math.random() * 100 + 100) : Math.floor(Math.random() * 100 + 200);
                 const randomHeight = expandedHobby === 'music' ? randomWidth : randomWidth * 1.5;
                 dimensions[data.id] = { width: randomWidth, height: randomHeight };
             });
@@ -177,6 +102,24 @@ export default function UserPage() {
         if(expandedHobby !== null)
             createRandomDimensions();
     }, [expandedHobby])
+
+    function findRelevantData() {
+        switch(expandedHobby)
+        {
+            case 'music':
+                return musicData;
+            case 'literature':
+                return booksData;
+            case 'anime':
+                return animeData;
+            case 'manga':
+                return mangaData;
+            case 'media':
+                return mediaData;
+            default:
+                return null;
+        }        
+    }
 
     const renderRelevantContent = () => {
         var relevantData = findRelevantData();
@@ -200,7 +143,7 @@ export default function UserPage() {
                             style={{
                                 maxWidth: randomDimensions[data.id]?.width,
                                 maxHeight: randomDimensions[data.id]?.height,
-                                margin: randomDimensions[data.id]?.width - (expandedHobby === 'book' ? 100 : 200),
+                                margin: randomDimensions[data.id]?.width - (expandedHobby === 'literature' ? 100 : 200),
                             }}
                             className={styles["expanded-hobby-entity-box"]}
                             onMouseEnter={() => setDataToDelete(data.id)}
@@ -269,70 +212,15 @@ export default function UserPage() {
         </div>
         
         <div className={styles["user-hobby-main-box"]}>
-            <div onClick={() => setExpandedHobby('music')} className={styles["userHobbyBox"]}>
-                <div className={styles["userHobbyBoxImages"]}>
-                    {musicData && (
-                        musicData.slice(0, 4).map(music => (
-                            <img key={music.id} src={music.imageUrl} alt={`Music photo ${music.id + 1}`}/>
-                        ))
-                    )}
-                </div>
-                <div className={styles["userHobbyBoxTitle"]}>
-                    <strong>Music</strong>
-                </div>
-            </div>
+            <HobbyBox setExpandedHobby={setExpandedHobby} hobbyName="Music" hobbyData={musicData}/>
 
-            <div onClick={() => setExpandedHobby('book')} className={`${styles["userHobbyBox"]} ${styles["bookImagesRes"]}`}>
-                <div className={styles["userHobbyBoxImages"]}>
-                    {booksData && (
-                        booksData.slice(0, 8).map(book => (
-                            <img key={book.id} src={book.imageUrl} alt={`Book photo ${book.id + 1}`}/>
-                        ))
-                    )}
-                </div>
-                <div className={styles["userHobbyBoxTitle"]}>
-                    <strong>Literature</strong>
-                </div>
-            </div>
+            <HobbyBox setExpandedHobby={setExpandedHobby} hobbyName="Literature" hobbyData={booksData}/>
 
-            <div onClick={() => setExpandedHobby('anime')} className={`${styles["userHobbyBox"]} ${styles["bookImagesRes"]}`}>
-                <div className={styles["userHobbyBoxImages"]}>
-                    {animeData && (
-                        animeData.slice(0, 8).map(anime => (
-                            <img key={anime.id} src={anime.imageUrl} alt={`Anime photo ${anime.id + 1}`}/>
-                        ))
-                    )}
-                </div>
-                <div className={styles["userHobbyBoxTitle"]}>
-                    <strong>Anime</strong>
-                </div>
-            </div>
+            <HobbyBox setExpandedHobby={setExpandedHobby} hobbyName="Anime" hobbyData={animeData}/>
 
-            <div onClick={() => setExpandedHobby('manga')} className={`${styles["userHobbyBox"]} ${styles["bookImagesRes"]}`}>
-                <div className={styles["userHobbyBoxImages"]}>
-                    {mangaData && (
-                        mangaData.slice(0, 8).map(manga => (
-                            <img key={manga.id} src={manga.imageUrl} alt={`Manga photo ${manga.id + 1}`}/>
-                        ))
-                    )}
-                </div>
-                <div className={styles["userHobbyBoxTitle"]}>
-                    <strong>Manga</strong>
-                </div>
-            </div>
+            <HobbyBox setExpandedHobby={setExpandedHobby} hobbyName="Manga" hobbyData={mangaData}/>
 
-            <div onClick={() => setExpandedHobby('movie')} className={`${styles["userHobbyBox"]} ${styles["bookImagesRes"]}`}>
-                <div className={styles["userHobbyBoxImages"]}>
-                    {mediaData && (
-                        mediaData.slice(0, 8).map(media => (
-                            <img key={media.id} src={media.imageUrl} alt={`Media photo ${media.id + 1}`}/>
-                        ))
-                    )}
-                </div>
-                <div className={styles["userHobbyBoxTitle"]}>
-                    <strong>Media</strong>
-                </div>
-            </div>
+            <HobbyBox setExpandedHobby={setExpandedHobby} hobbyName="Media" hobbyData={mediaData}/>
         </div>
 
         </div>
