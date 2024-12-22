@@ -22,7 +22,7 @@ export default function useFetchUserData() {
 
     useEffect(() => {
         async function fetchHobbyData() {
-                var response = await fetch(`http://localhost:5078/api/account/user-hobby-data/${params.username}`, {
+                var response = await fetch(`http://54.86.55.158:8080/api/account/user-hobby-data/${params.username}`, {
                     method: "GET",
                     headers: {
                         "Authorization": "Bearer " + localStorage.getItem('token'),
