@@ -34,7 +34,7 @@ export default function SearchMangaPage() {
         if(!currentMangaData)
             return;
 
-        var response = await fetch("http://localhost:5078/api/manga/create", {
+        var response = await fetch("http://54.86.55.158:8080/api/manga/create", {
             method: "POST",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token'),

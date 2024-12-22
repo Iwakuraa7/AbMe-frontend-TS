@@ -11,7 +11,7 @@ export default function SingInPage() {
     async function signInUser() {
         try
         {
-            const response = await fetch("http://localhost:5078/api/account/login", {
+            const response = await fetch("http://54.86.55.158:8080/api/account/login", {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem('token')}`,

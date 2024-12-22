@@ -12,7 +12,7 @@ export default function SignUpPage() {
     async function registerNewUser() {
         try
         {
-            const response = await fetch("http://localhost:5078/api/account/register", {
+            const response = await fetch("http://54.86.55.158:8080/api/account/register", {
                 method: "POST",
                 headers: {
                     "Accept": "*/*",

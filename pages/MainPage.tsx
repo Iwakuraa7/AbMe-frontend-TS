@@ -35,7 +35,7 @@ export default function MainPage() {
     }, [])
 
     async function handleUserSearch() {
-        var response = await fetch(`http://localhost:5078/api/account/user-search/${userSearchQuery}`);
+        var response = await fetch(`http://54.86.55.158:8080/api/account/user-search/${userSearchQuery}`);
         var data = await response.json();
 
         if(data.succeeded)

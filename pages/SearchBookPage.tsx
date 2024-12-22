@@ -39,7 +39,7 @@ export default function SearchBookPage() {
     async function addBookData(book: bookDataType) {
         try
         {
-            var response = await fetch("http://localhost:5078/api/literature/create", {
+            var response = await fetch("http://54.86.55.158:8080/api/literature/create", {
                 method: "POST",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem('token'),

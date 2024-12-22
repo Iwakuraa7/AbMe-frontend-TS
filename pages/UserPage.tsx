@@ -5,8 +5,9 @@ import mainPageStyles from "../styles/MainPage.module.css"
 import NavBar from "../components/NavBar";
 import { UserContext } from "../src/contexts/UserContext";
 import ContextMessage from "../components/ContextMessage";
-import useFetchUserData from "../src/hooks/useFetchUserData";
+import useFetchUserData, { hobbyDataType } from "../src/hooks/useFetchUserData";
 import HobbyBox from "../components/HobbyBox";
+import React from "react";
 
 type randomDimension = {
     width: number;
@@ -27,7 +28,7 @@ export default function UserPage() {
     async function deleteRelevantData(dataId: number) {
         try
         {
-            var response = await fetch(`http://localhost:5078/api/${expandedHobby}/delete/${dataId}`, {
+            var response = await fetch(`http://54.86.55.158:8080/api/${expandedHobby}/delete/${dataId}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem('token'),
@@ -45,16 +46,21 @@ export default function UserPage() {
                 {
                     case 'music':
                         setMusicData((prevData) => prevData.filter(m => m.id !== dataId));
+                        break;
                     case 'literature':
                         setBooksData((prevData) => prevData.filter(b => b.id !== dataId));
+                        break;
                     case 'anime':
                         setAnimeData((prevData) => prevData.filter(a => a.id !== dataId));
+                        break;
                     case 'manga':
                         setMangaData((prevData) => prevData.filter(m => m.id !== dataId));
+                        break;
                     case 'media':
                         setMediaData((prevData) => prevData.filter(m => m.id != dataId));
+                        break;
                     default:
-                        return;
+                        break;
                 }
             }
         }
@@ -65,7 +71,7 @@ export default function UserPage() {
     }
 
     async function handleUserColorUpdate() {
-        var response = await fetch("http://localhost:5078/api/user-color/update", {
+        var response = await fetch("http://54.86.55.158:8080/api/user-color/update", {
             method: "PUT",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token'),
@@ -104,21 +110,30 @@ export default function UserPage() {
     }, [expandedHobby])
 
     function findRelevantData() {
+        var data: hobbyDataType[] | null;
         switch(expandedHobby)
         {
             case 'music':
-                return musicData;
+                data = musicData;
+                break;
             case 'literature':
-                return booksData;
+                data = booksData;
+                break;
             case 'anime':
-                return animeData;
+                data = animeData;
+                break;
             case 'manga':
-                return mangaData;
+                data = mangaData;
+                break;
             case 'media':
-                return mediaData;
+                data = mediaData;
+                break;
             default:
-                return null;
-        }        
+                data = null;
+                break;
+        }
+        
+        return data;
     }
 
     const renderRelevantContent = () => {

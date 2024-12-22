@@ -69,7 +69,7 @@ export default function SearchMusic() {
     }
 
     async function addAlbumData(musicData: musicDataType) {
-        var response = await fetch("http://localhost:5078/api/music/create", {
+        var response = await fetch("http://54.86.55.158:8080/api/music/create", {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem('token')}`,
@@ -88,7 +88,7 @@ export default function SearchMusic() {
     }
 
     async function addTrackData(musicData: musicDataType) {
-        var response = await fetch("http://localhost:5078/api/music/create", {
+        var response = await fetch("http://54.86.55.158:8080/api/music/create", {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem('token')}`,

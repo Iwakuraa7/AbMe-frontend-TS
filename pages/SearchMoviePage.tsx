@@ -42,7 +42,7 @@ export default function SearchMoviePage() {
         if(!currentMedia)
             return;
 
-        var response = await fetch("http://localhost:5078/api/media/create", {
+        var response = await fetch("http://54.86.55.158:8080/api/media/create", {
             method: "POST",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token'),

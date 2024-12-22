@@ -31,7 +31,7 @@ export default function SearchAnimePage() {
     }
 
     async function addAnimeData () {
-        var response = await fetch("http://localhost:5078/api/anime/create", {
+        var response = await fetch("http://54.86.55.158:8080/api/anime/create", {
             method: "POST",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem('token'),
